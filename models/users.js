@@ -25,3 +25,5 @@ UserSchema = new Schema({
   videogames: [LibraryItemSchema]
 
 });
+
+module.exports = mongoose.model('Users', UserSchema);

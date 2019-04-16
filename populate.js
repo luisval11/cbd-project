@@ -17,7 +17,7 @@ try {
     firstName: "Admin",
     lastName: "Admin",
     username: "admin",
-    password: "6b7ad64360d682981e27fd6a9843fe8971efcdf5961f23a09a50bb6c3f0522e9",
+    password: "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
     dni: "52932758Y",
 
     music: [{_id: ObjectId(), author: "pepe", title: "hola don pepito"}, {
@@ -46,7 +46,7 @@ try {
     firstName: "Admin",
     lastName: "Admin",
     username: "admin1",
-    password: "6b7ad64360d682981e27fd6a9843fe8971efcdf5961f23a09a50bb6c3f0522e9",
+    password: "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
     dni: "52932758Y",
 
     music: [{_id: ObjectId(), author: "jose", title: "hola don jose"}, {
