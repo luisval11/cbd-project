@@ -6,7 +6,7 @@ LibraryItemSchema = new Schema({
   author: {type: String, required: true},
   title: {type: String, required: true},
   description: {type: String},
-  mark: {type: String, enum: ['masterpiece', 'great', 'good', 'bad', 'horrible']}
+  mark: {type: String, enum: ['masterpiece', 'great', 'good', 'bad', 'horrible', 'pending']}
 
 
 });
