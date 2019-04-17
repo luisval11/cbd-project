@@ -25,5 +25,32 @@ exports.getMyLibrary = function (req, res) {
         res.json(data);
     })
   });
+};
+
+exports.get = function (req, res) {
+
+  Users.aggregate([
+      {$match: {}},
+      {$unwind: {path: '$music', preserveNullAndEmptyArrays: true}},
+      {$unwind: {path: '$films', preserveNullAndEmptyArrays: true}},
+      {$unwind: {path: '$videogames', preserveNullAndEmptyArrays: true}},
+      {
+        $group: {
+          _id: 1,
+          music: {$addToSet: '$music'},
+          films: {$addToSet: '$films'},
+          videogames: {$addToSet: '$videogames'}
+        }
+      }
+    ]
+  ).exec((err, data) => {
+    if (err) {
+      res.status(400).send(ErrorHandler.handleError(err, null));
+    } else if (!data)
+      res.status(200).json([]);
+    else
+      res.status(200).json(data);
+
+  });
 
 };

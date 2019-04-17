@@ -13,6 +13,11 @@ router.get('/getPrincipal', AuthController.principal);
 // ############### LIBRARY ##############
 
 router.get('/user/library', LibraryController.getMyLibrary);
+router.get('/library', LibraryController.get);
+// TODO:
+router.post('/user/library', LibraryController.getMyLibrary);
+router.put('/user/library', LibraryController.getMyLibrary);
+router.delete('/user/library', LibraryController.getMyLibrary);
 
 module.exports = router;
 
