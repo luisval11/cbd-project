@@ -1,6 +1,6 @@
 import {MarkType} from './markType';
 
-export class libraryItem {
+export class LibraryItem {
   _id: string;
   author: string;
   title: string;

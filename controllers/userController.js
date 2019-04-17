@@ -3,12 +3,14 @@ const User = require('../models/users');
 const ErrorHandler = require('../controllers/errorController');
 const AuthController = require('./authenticationController');
 
+//Find All
 exports.get = function (req, res) {
   User.find({}, (err, users) => {
     res.json(users);
   });
 };
 
+//
 exports.post = function (req, res) {
   //Delete id from angular and hash password
   delete req.body._id;
