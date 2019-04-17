@@ -14,8 +14,8 @@ router.get('/getPrincipal', AuthController.principal);
 
 router.get('/user/library', LibraryController.getMyLibrary);
 router.get('/library', LibraryController.get);
+router.post('/user/library/:library', LibraryController.post);
 // TODO:
-router.post('/user/library', LibraryController.getMyLibrary);
 router.put('/user/library', LibraryController.getMyLibrary);
 router.delete('/user/library', LibraryController.getMyLibrary);
 

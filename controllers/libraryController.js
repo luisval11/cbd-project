@@ -54,3 +54,23 @@ exports.get = function (req, res) {
   });
 
 };
+
+exports.post = function (req, res) {
+  const library = req.params.library.toString();
+  delete req.body._id;
+
+  if (!(library === "music" || library === "films" || library === "videogames"))
+    res.status(400).send(ErrorHandler.handleError(null, "Library type not found"));
+  else {
+    AuthController.principalUtils(req, user => {
+      Users.updateOne({username: user.username}, {$push: {[library]: req.body}}, {runValidators: true}, (err, data) => {
+        if (err)
+          res.status(400).json(err);
+        else
+          res.json(data);
+
+      })
+    });
+  }
+
+};
