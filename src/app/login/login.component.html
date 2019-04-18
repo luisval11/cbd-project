@@ -1,0 +1,36 @@
+<!-- 111px se obtiene de la suma 56px(titulo) + 35px(breadcrumb) + 20px(separación) -->
+<div class="container" style="margin-top:111px; margin-bottom: 0">
+  <!--vertical align on parent using my-auto, horizontal align on self mx-auto-->
+  <div class=" row">
+    <div class="col-12 h-100">
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{'login.title'}}</h5>
+          <span class="card-text">
+            <div class="form-group">
+              <label for="username">{{'login.username'}}</label>
+              <input type="text" class="form-control form-control-lg" id="username"
+                aria-describedby="usernameHelp" placeholder="Enter username" [(ngModel)]="user.username" required>
+              <small id="usernameHelp" class="form-text text-muted">{{'login.message'}}</small>
+            </div>
+
+            <div class="form-group">
+              <label for="password">{{'login.password'}}</label>
+              <input type="password" class="form-control form-control-lg" id="password" [(ngModel)]="user.password"
+                name="password" placeholder="Password" required>
+            </div>
+
+            <div class="error" *ngIf="loginError" class="alert alert-danger">{{'login.error'}}</div>
+          </span>
+        </div>
+
+        <a (click)="log_in()" class="card-footer btn btn-primary btn-lg text-center alert-primary">
+          {{'login.login'}}
+        </a>
+
+      </div>
+
+    </div>
+  </div>
+</div>

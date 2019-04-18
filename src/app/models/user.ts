@@ -1,5 +1,4 @@
-import {libraryItem} from './libraryItem';
-
+import {Library} from './library';
 
 export class User {
   _id: string;
@@ -8,9 +7,7 @@ export class User {
   username: string;
   password: string;
   dni: string;
-  music: libraryItem[];
-  films: libraryItem[];
-  videogames: libraryItem[];
+  library: Library;
 
   constructor(
     _id: '',
@@ -19,9 +16,8 @@ export class User {
     _username: '',
     _password: '',
     _dni: '',
-    _music: [],
-    _films: [],
-    _videogames: []
+    _library: Library = null,
+
   ) {
     this._id = _id;
     this.firstName = _firstName;
@@ -29,8 +25,6 @@ export class User {
     this.username = _username;
     this.password = _password;
     this.dni = _dni;
-    this.music = _music;
-    this.films = _films;
-    this.videogames = _videogames;
+    this.library = _library;
   }
 }

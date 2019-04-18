@@ -9,8 +9,6 @@ import {User} from '../../models/user';
 })
 export class NewItemComponent implements OnInit {
 
-  user: User = new User();
-  
   @Input() newItem: LibraryItem = new LibraryItem();
   @Input() author: string;
   @Input() title: string;
@@ -20,8 +18,6 @@ export class NewItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.user = Object.assign(new User(), this.user);
-
   }
 
 }
