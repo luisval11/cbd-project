@@ -1,6 +1,6 @@
 const Users = require('../models/users');
 const ErrorHandler = require('../controllers/errorController');
-const AuthController = require('./authencationController');
+const AuthController = require('./authenticationController');
 
 
 exports.getMyLibrary = function (req, res) {

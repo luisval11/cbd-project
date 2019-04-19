@@ -13,8 +13,9 @@ import {NewItemComponent} from './library/new-item/new-item.component';
 import {FormsModule} from '@angular/forms';
 import {LoginService} from './login/login.service';
 import {LibraryService} from './library/library.service';
-import {HttpClientModule} from "@angular/common/http";
-import {MatSnackBarModule} from "@angular/material";
+import {HttpClientModule} from '@angular/common/http';
+import {MatSnackBarModule} from '@angular/material';
+import {CookieService} from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {MatSnackBarModule} from "@angular/material";
   providers: [
     LoginService,
     LibraryService,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

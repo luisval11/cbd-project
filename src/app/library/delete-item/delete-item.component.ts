@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {LibraryService} from '../library.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-delete-item',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteItemComponent implements OnInit {
 
-  constructor() { }
+  @Input() itemId: string;
+
+  constructor(private libraryService: LibraryService,  private router: Router) { }
 
   ngOnInit() {
+  }
+
+  delete() {
+    console.log(this.itemId);
+    this.libraryService.removeItem(this.itemId)
+      .then(() => {
+        this.router.navigate(['/user/library']);
+      });
   }
 
 }

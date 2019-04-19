@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {LibraryItem} from '../../models/libraryItem';
 
 @Component({
   selector: 'app-displayer-item',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./displayer-item.component.css']
 })
 export class DisplayerItemComponent implements OnInit {
+
+  @Input() item: LibraryItem = new LibraryItem();
 
   constructor() { }
 

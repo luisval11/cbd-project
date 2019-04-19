@@ -1,3 +1,9 @@
-<p>
-  displayer-item works!
-</p>
+<fieldset>
+Title of item: {{item.title}} <br>
+Author: {{item.author}} <br>
+Description: {{item.description}} <br>
+Mark: {{item.mark}} <br>
+</fieldset>
+
+<a routerLink="/user/library/edit/{{item._id}}">Edit this item</a>
+<app-delete-item [itemId]="item._id"></app-delete-item>

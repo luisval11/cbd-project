@@ -9,20 +9,32 @@ import {LibraryItem} from '../../models/libraryItem';
 })
 export class UserLibraryComponent implements OnInit {
 
-  public music: LibraryItem[] = [];
-  public videogames: LibraryItem[] = [];
-  public films: LibraryItem[] = [];
+  public musicList: LibraryItem[] = [];
+  public videogamesList: LibraryItem[] = [];
+  public filmsList: LibraryItem[] = [];
 
   constructor(private libraryService: LibraryService) { }
 
   ngOnInit() {
+    this.libraryService.onRefreshLibrary.subscribe(() => {
+      this.refreshLibrary();
+    });
     this.libraryService.getMyLibrary().then(library => {
-      this.music = library.music;
-      this.films = library.films;
-      this.videogames = library.videogames;
+      this.musicList = library.music;
+      this.filmsList = library.films;
+      this.videogamesList = library.videogames;
     }).catch(err => {
       console.log(err);
     });
   }
 
+  refreshLibrary() {
+    this.libraryService.getMyLibrary().then(library => {
+      this.musicList = library.music;
+      this.filmsList = library.films;
+      this.videogamesList = library.videogames;
+    }).catch(err => {
+      console.log(err);
+    });
+  }
 }

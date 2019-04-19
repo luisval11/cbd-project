@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {LibraryItem} from '../models/libraryItem';
 import {Library} from '../models/library';
@@ -9,6 +9,8 @@ import {Library} from '../models/library';
 })
 export class LibraryService {
 
+  public onRefreshLibrary: EventEmitter<any> = new EventEmitter<any>();
+
   constructor(private http: HttpClient) { }
 
   getMyLibrary() {
@@ -16,15 +18,17 @@ export class LibraryService {
   }
 
   addItem(item: LibraryItem, library: string) {
-    return this.http.post('/api/library/' + library, item).toPromise();
+    return this.http.post('/api/user/library/' + library, item).toPromise();
   }
 
   removeItem(itemId: string) {
-    return this.http.delete('/api/library/' + itemId).toPromise();
+    const query = this.http.delete('/api/user/library/' + itemId).toPromise();
+    this.onRefreshLibrary.emit();
+    return query;
   }
 
   editItem(item: LibraryItem, library: string) {
-    return this.http.put('/api/library/' + library, item).toPromise();
+    return this.http.put('/api/user/library/' + library, item).toPromise();
   }
 
 }

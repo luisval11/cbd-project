@@ -12,40 +12,28 @@ import { MatSnackBar } from '@angular/material';
 })
 export class LoginComponent implements OnInit {
 
-  // @ts-ignore
-  user: User = new User();
+  user: User = new User('', '', '', '', '', null);
   loginError = null;
-  logged: boolean;
 
   constructor(private snackBar: MatSnackBar, private loginService: LoginService,
               public router: Router, private cookieService: CookieService) { }
 
   ngOnInit() {
     if (this.cookieService.get('auth_token') !== '') {
-      this.logged = true;
       this.loginService.getPrincipal()
         .then (user => {
-            this.router.navigate(['/']);
             this.user = Object.assign(user);
+            this.router.navigate(['/user/library']);
         });
-    } else {
-      this.logged = false;
     }
   }
 
   log_in(): void {
     this.loginError = null;
+    console.log(this.user);
     this.loginService.storeToken(this.user)
       .then(res => {
-        this.loginService.eventEmitter.subscribe(principal => {
-          this.logged = true;
-          this.snackBar.open('Log in succesfully', 'Close', {
-            duration: 10000,
-            verticalPosition: 'top',
-            horizontalPosition: 'right'
-          });
-          this.router.navigate(['/']);
-        });
+          this.router.navigate(['/user/library']);
       }).catch(error => {
         if (error.status === 401) {
           this.loginError = error.status;

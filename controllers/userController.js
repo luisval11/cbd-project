@@ -1,7 +1,7 @@
 const sha256 = require('crypto-js/sha256');
 const User = require('../models/users');
 const ErrorHandler = require('../controllers/errorController');
-const AuthController = require('./authencationController');
+const AuthController = require('./authenticationController');
 
 //Find All
 exports.get = function (req, res) {

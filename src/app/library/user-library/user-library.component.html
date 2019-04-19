@@ -1,3 +1,14 @@
-<p>
-  user-library works!
-</p>
+<h1>My Library:</h1><br>
+<a routerLink="/user/library/create">Create an item</a>
+<h2>Video games:</h2><br>
+<div *ngFor="let vid of videogamesList" >
+  <app-displayer-item [item] = "vid"></app-displayer-item>
+</div>
+<h2>Music:</h2><br>
+<div *ngFor="let mus of musicList" >
+  <app-displayer-item [item] = "mus"></app-displayer-item>
+</div>
+<h2>Films:</h2><br>
+<div *ngFor="let fil of filmsList" >
+  <app-displayer-item [item] = "fil"></app-displayer-item>
+</div>
