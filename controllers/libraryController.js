@@ -27,6 +27,24 @@ exports.getMyLibrary = function (req, res) {
   });
 };
 
+exports.findOne = function (req, res) {
+  const libraryId = req.params.id;
+
+  if (new RegExp('\\$').test(libraryId.toString()))
+    res.status(400).json(ErrorHandler.handleError(null, "Nice try, but you can't use $ in urls"));
+  else
+    Users.findOne({$or: [{music: {$elemMatch: {_id: libraryId}}}, {films: {$elemMatch: {_id: libraryId}}}, {videogames: {$elemMatch: {_id: libraryId}}}]},
+      'music films videogames', (err, users) => {
+        if (err)
+          res.status(400).json(ErrorHandler.handleError(err, null));
+        else if (users == null)
+          res.status(400).json(ErrorHandler.handleError(null, "Library item not found"));
+        else {
+          res.json(users.music.id(libraryId) ? users.music.id(libraryId) : users.films.id(libraryId) ? users.films.id(libraryId) : users.videogames.id(libraryId))
+        }
+      });
+};
+
 exports.get = function (req, res) {
 
   Users.aggregate([
