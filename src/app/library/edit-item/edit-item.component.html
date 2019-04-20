@@ -1,3 +1,33 @@
-<p>
-  edit-item works!
-</p>
+<h3 class="card-title">New Item</h3>
+<form (submit)="create()">
+  <input type="hidden" name="_id" [(ngModel)]="newItem._id">
+  <label> Title:
+    <input required="required" type="text" name="name" [(ngModel)]="newItem.title">
+  </label>
+  <label> Author:
+    <input required="required" type="text" name="author" [(ngModel)]="newItem.author">
+  </label>
+  <label> Description:
+    <input required="required" type="text" name="description" [(ngModel)]="newItem.description">
+  </label>
+  <label> Mark:
+    <select required="required" name="mark" [(ngModel)]="mark">
+      <option value="masterpiece">Masterpiece</option>
+      <option value="great">Great</option>
+      <option value="good">Good</option>
+      <option value="bad">Bad</option>
+      <option value="horrible">Horrible</option>
+      <option value="pending">Pending</option>
+    </select>
+  </label>
+  <label> Library:
+    <select required="required" name="library" [(ngModel)]="library">
+      <option value="films">Films</option>
+      <option value="music">Music</option>
+      <option value="videogames">Videogames</option>
+    </select>
+  </label>
+  <button type="submit">Save Item</button>
+  <div class="alert alert-danger" *ngIf="error && error.error"> {{error.error}}</div>
+</form>
+
