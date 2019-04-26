@@ -40,7 +40,20 @@ exports.findOne = function (req, res) {
         else if (users == null)
           res.status(400).json(ErrorHandler.handleError(null, "Library item not found"));
         else {
-          res.json(users.music.id(libraryId) ? users.music.id(libraryId) : users.films.id(libraryId) ? users.films.id(libraryId) : users.videogames.id(libraryId))
+          var sol;
+          // users.music.id(libraryId) ? users.music.id(libraryId).type = "music" : users.films.id(libraryId) ? users.films.id(libraryId) : users.videogames.id(libraryId);
+
+          if (users.music.id(libraryId)) {
+            sol = users.music.id(libraryId)._doc;
+            sol['type'] = "music";
+          } else if (users.films.id(libraryId)) {
+            sol = users.films.id(libraryId)._doc;
+            sol['type'] = "films";
+          } else {
+            sol = users.videogames.id(libraryId)._doc;
+            sol['type'] = "videogames";
+          }
+          res.json(sol)
         }
       });
 };
