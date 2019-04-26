@@ -27,8 +27,13 @@ export class LibraryService {
     return query;
   }
 
-  editItem(item: LibraryItem, library: string) {
-    return this.http.put('/api/user/library/' + library, item).toPromise();
+  editItem(item: LibraryItem, oldLib: string) {
+    console.log();
+    return this.http.put('/api/user/library/' + oldLib, item).toPromise();
+  }
+
+  findItem(id: string) {
+    return this.http.get<LibraryItem>('/api/library/' + id).toPromise();
   }
 
 }

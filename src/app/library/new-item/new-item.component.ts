@@ -19,12 +19,7 @@ export class NewItemComponent implements OnInit {
   constructor(private libraryService: LibraryService,  private router: Router) { }
 
   ngOnInit() {
-    this.marksTypes.push(MarkType.pending);
-    this.marksTypes.push(MarkType.bad);
-    this.marksTypes.push(MarkType.good);
-    this.marksTypes.push(MarkType.great);
-    this.marksTypes.push(MarkType.horrible);
-    this.marksTypes.push(MarkType.masterpiece);
+    this.addMarkTypes();
   }
 
   create() {
@@ -52,5 +47,13 @@ export class NewItemComponent implements OnInit {
     } else if (this.mark === MarkType.masterpiece) {
       this.newItem.mark = MarkType.masterpiece;
     }
+  }
+  addMarkTypes() {
+    this.marksTypes.push(MarkType.pending);
+    this.marksTypes.push(MarkType.bad);
+    this.marksTypes.push(MarkType.good);
+    this.marksTypes.push(MarkType.great);
+    this.marksTypes.push(MarkType.horrible);
+    this.marksTypes.push(MarkType.masterpiece);
   }
 }

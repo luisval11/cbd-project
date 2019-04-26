@@ -2,13 +2,13 @@
 <a routerLink="/user/library/create">Create an item</a>
 <h2>Video games:</h2><br>
 <div *ngFor="let vid of videogamesList" >
-  <app-displayer-item [item] = "vid"></app-displayer-item>
+  <app-displayer-item [item] = "vid" [typeLib]="videogames"></app-displayer-item>
 </div>
 <h2>Music:</h2><br>
 <div *ngFor="let mus of musicList" >
-  <app-displayer-item [item] = "mus"></app-displayer-item>
+  <app-displayer-item [item] = "mus" [typeLib]="music"></app-displayer-item>
 </div>
 <h2>Films:</h2><br>
 <div *ngFor="let fil of filmsList" >
-  <app-displayer-item [item] = "fil"></app-displayer-item>
+  <app-displayer-item [item] = "fil" [typeLib]="films"></app-displayer-item>
 </div>

@@ -9,7 +9,7 @@ import {LibraryItem} from '../../models/libraryItem';
 export class DisplayerItemComponent implements OnInit {
 
   @Input() item: LibraryItem = new LibraryItem();
-
+  @Input() typeLib: string;
   constructor() { }
 
   ngOnInit() {
