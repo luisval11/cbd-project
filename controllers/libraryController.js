@@ -40,36 +40,92 @@ exports.findOne = function (req, res) {
         else if (users == null)
           res.status(400).json(ErrorHandler.handleError(null, "Library item not found"));
         else {
-          res.json(users.music.id(libraryId) ? users.music.id(libraryId) : users.films.id(libraryId) ? users.films.id(libraryId) : users.videogames.id(libraryId))
+          var sol;
+          // users.music.id(libraryId) ? users.music.id(libraryId).type = "music" : users.films.id(libraryId) ? users.films.id(libraryId) : users.videogames.id(libraryId);
+
+          if (users.music.id(libraryId)) {
+            sol = users.music.id(libraryId)._doc;
+            sol['type'] = "music";
+          } else if (users.films.id(libraryId)) {
+            sol = users.films.id(libraryId)._doc;
+            sol['type'] = "films";
+          } else {
+            sol = users.videogames.id(libraryId)._doc;
+            sol['type'] = "videogames";
+          }
+          res.json(sol)
         }
       });
 };
 
 exports.get = function (req, res) {
 
-  Users.aggregate([
-      {$match: {}},
-      {$unwind: {path: '$music', preserveNullAndEmptyArrays: true}},
-      {$unwind: {path: '$films', preserveNullAndEmptyArrays: true}},
-      {$unwind: {path: '$videogames', preserveNullAndEmptyArrays: true}},
-      {
-        $group: {
-          _id: 1,
-          music: {$addToSet: '$music'},
-          films: {$addToSet: '$films'},
-          videogames: {$addToSet: '$videogames'}
-        }
-      }
-    ]
-  ).exec((err, data) => {
-    if (err) {
-      res.status(400).send(ErrorHandler.handleError(err, null));
-    } else if (!data)
-      res.status(200).json([]);
-    else
-      res.status(200).json(data);
+  const search = req.query.search;
+  const mark = req.query.mark;
+  const library = req.query.library;
 
-  });
+  function creaDict(search, mark, library) {
+    var dict = {};
+    if (search && !new RegExp('\\$').test(search.toString()))
+      dict['$or'] = [{[library + 'author']: {$regex: search.toString(), $options: 'i'}},
+        {[library + 'title']: {$regex: search.toString(), $options: 'i'}},
+        {[library + 'description']: {$regex: search.toString(), $options: 'i'}},
+      ];
+    if (mark && !new RegExp('\\$').test(mark.toString()))
+      dict[library + 'mark'] = mark.toString();
+
+    return dict;
+  }
+
+  if (library !== 'music' && library !== 'films' && library !== 'videogames')
+    Users.aggregate([
+        {$match: {}},
+        {$unwind: {path: '$music', preserveNullAndEmptyArrays: true}},
+        {$unwind: {path: '$films', preserveNullAndEmptyArrays: true}},
+        {$unwind: {path: '$videogames', preserveNullAndEmptyArrays: true}},
+
+        {
+          $group: {
+            _id: 1,
+            music: {$addToSet: '$music'},
+            films: {$addToSet: '$films'},
+            videogames: {$addToSet: '$videogames'}
+          }
+        },
+
+      ]
+    ).exec((err, data) => {
+      if (err) {
+        res.status(400).send(ErrorHandler.handleError(err, null));
+      } else if (!data)
+        res.status(200).json([]);
+      else
+        res.status(200).json(data);
+
+    });
+  else
+
+    Users.aggregate([
+        {$match: {}},
+        {$unwind: {path: '$' + library, preserveNullAndEmptyArrays: true}},
+        {$match: creaDict(search, mark, library + ".")},
+        {
+          $group: {
+            _id: 1,
+            [library]: {$addToSet: '$' + library},
+          }
+        },
+
+      ]
+    ).exec((err, data) => {
+      if (err) {
+        res.status(400).send(ErrorHandler.handleError(err, null));
+      } else if (!data)
+        res.status(200).json([]);
+      else
+        res.status(200).json(data);
+
+    });
 
 };
 

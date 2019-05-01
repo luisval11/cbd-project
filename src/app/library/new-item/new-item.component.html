@@ -3,13 +3,13 @@
   <input type="hidden" name="_id" [(ngModel)]="newItem._id">
   <label> Title:
     <input required="required" type="text" name="name" [(ngModel)]="newItem.title">
-  </label>
+  </label><br>
   <label> Author:
     <input required="required" type="text" name="author" [(ngModel)]="newItem.author">
-  </label>
+  </label><br>
   <label> Description:
     <input required="required" type="text" name="description" [(ngModel)]="newItem.description">
-  </label>
+  </label><br>
   <label> Mark:
     <select required="required" name="mark" [(ngModel)]="mark">
       <option value="masterpiece">Masterpiece</option>
@@ -19,14 +19,14 @@
       <option value="horrible">Horrible</option>
       <option value="pending">Pending</option>
     </select>
-  </label>
+  </label><br>
   <label> Library:
     <select required="required" name="library" [(ngModel)]="library">
       <option value="films">Films</option>
       <option value="music">Music</option>
       <option value="videogames">Videogames</option>
     </select>
-  </label>
+  </label><br>
   <button type="submit">Save Item</button>
   <div class="alert alert-danger" *ngIf="error && error.error"> {{error.error}}</div>
 </form>
