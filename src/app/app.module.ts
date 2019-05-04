@@ -14,8 +14,12 @@ import {FormsModule} from '@angular/forms';
 import {LoginService} from './login/login.service';
 import {LibraryService} from './library/library.service';
 import {HttpClientModule} from '@angular/common/http';
-import {MatSnackBarModule} from '@angular/material';
+
 import {CookieService} from 'ngx-cookie-service';
+import { FilterItemComponent } from './library/filter-item/filter-item.component';
+import { PopupFilteredItemsComponent } from './library/popup-filtered-items/popup-filtered-items.component';
+import {MatDialogModule, MatSnackBarModule} from "@angular/material";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -27,21 +31,26 @@ import {CookieService} from 'ngx-cookie-service';
     EditItemComponent,
     DisplayerItemComponent,
     DeleteItemComponent,
-    UserLibraryComponent
+    UserLibraryComponent,
+    FilterItemComponent,
+    PopupFilteredItemsComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     FormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ],
   providers: [
     LoginService,
     LibraryService,
     CookieService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [PopupFilteredItemsComponent]
 })
 export class AppModule {
 }

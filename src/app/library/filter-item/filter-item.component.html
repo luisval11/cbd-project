@@ -1,0 +1,98 @@
+&nbsp;<a routerLink="/">Back to Login</a>
+<fieldset>
+<form>
+  <div class="form-group active">
+    <input name="search" type="text"  id="search" placeholder="Filter by author, name or description" [(ngModel)]="search">
+    <br>
+    <label> Mark:
+      <select name="mark" [(ngModel)]="mark">
+        <option value=""></option>
+        <option value="masterpiece">Masterpiece</option>
+        <option value="great">Great</option>
+        <option value="good">Good</option>
+        <option value="bad">Bad</option>
+        <option value="horrible">Horrible</option>
+        <option value="pending">Pending</option>
+      </select>
+    </label><br>
+    <label> Library:
+      <select required="required" name="library" [(ngModel)]="library">
+        <option value="All">All</option>
+        <option value="films">Films</option>
+        <option value="music">Music</option>
+        <option value="videogames">Videogames</option>
+      </select>
+    </label>
+    <br>
+    <button type="submit" (click)="filterPopup()">Filter</button>
+  </div>
+</form>
+</fieldset>
+<h2>ALL ITEMS:</h2>
+<h3>VIDEOGAMES: </h3>
+<ng-container *ngIf="loading; else filterItems1">
+  <img class="mx-auto d-block m-2 rounded-circle" src="assets/images/loading.svg" width="20%" height="auto" alt="loading..."/>
+</ng-container>
+<ng-template #filterItems1>
+  <ng-container *ngIf="videogamess != null && videogamess.length > 0; then videogamesList; else noVideogames"></ng-container>
+</ng-template>
+<br>
+
+<ng-template #videogamesList>
+  <div>
+    <ng-container *ngFor="let v of videogamess">
+      <app-displayer-item [item]="v" [typeLib]="videogames"></app-displayer-item>
+    </ng-container>
+  </div>
+</ng-template>
+<ng-template #noVideogames>
+  <div>
+    There isn't items with this parameters in any videogame library.
+  </div>
+</ng-template>
+<h3>MUSIC: </h3>
+<ng-container *ngIf="loading; else filterItems2">
+  <img class="mx-auto d-block m-2 rounded-circle" src="assets/images/loading.svg" width="20%" height="auto" alt="loading..."/>
+</ng-container>
+<ng-template #filterItems2>
+  <ng-container *ngIf="musics != null && musics.length > 0; then musicList; else noMusic"></ng-container>
+</ng-template>
+
+<br>
+
+<ng-template #musicList>
+  <div>
+    <ng-container *ngFor="let m of musics">
+      <app-displayer-item [item]="m" [typeLib]="music"></app-displayer-item>
+    </ng-container>
+  </div>
+</ng-template>
+
+<ng-template #noMusic>
+  <div>
+    There isn't items with this parameters in any music library.
+  </div>
+</ng-template>
+<br>
+<h3>FILMS: </h3>
+<ng-container *ngIf="loading; else filterItems3">
+  <img class="mx-auto d-block m-2 rounded-circle" src="assets/images/loading.svg" width="20%" height="auto" alt="loading..."/>
+</ng-container>
+<ng-template #filterItems3>
+  <ng-container *ngIf="filmss != null && filmss.length > 0; then filmsList; else noFilms"></ng-container>
+</ng-template>
+
+<ng-template #filmsList>
+  <div>
+    <ng-container *ngFor="let f of filmss">
+      <app-displayer-item [item]="f" [typeLib]="films"></app-displayer-item>
+    </ng-container>
+  </div>
+</ng-template>
+
+<ng-template #noFilms>
+  <div>
+    There isn't items with this parameters in any film library.
+  </div>
+</ng-template>
+

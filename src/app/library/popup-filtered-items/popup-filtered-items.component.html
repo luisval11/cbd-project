@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>Results:</h2>
+<div *ngFor="let m of results.music">
+  <h3 mat-dialog-content>{{m.title}}</h3>
+  <h3 mat-dialog-content>{{m.description}}</h3>
+  <h3 mat-dialog-content>{{m.author}}</h3>
+  <h3 mat-dialog-content>{{m.type}}</h3>
+</div>
+<div *ngFor="let f of results.films">
+  <h3 mat-dialog-content>{{f.title}}</h3>
+  <h3 mat-dialog-content>{{f.description}}</h3>
+  <h3 mat-dialog-content>{{f.author}}</h3>
+  <h3 mat-dialog-content>{{f.type}}</h3>
+</div>
+<div *ngFor="let v of results.videogames">
+  <h3 mat-dialog-content>{{v.title}}</h3>
+  <h3 mat-dialog-content>{{v.description}}</h3>
+  <h3 mat-dialog-content>{{v.author}}</h3>
+  <h3 mat-dialog-content>{{v.type}}</h3>
+</div>
+<button class="mat-raised-button" (click)="close()">Close</button>
