@@ -122,8 +122,20 @@ exports.get = function (req, res) {
         res.status(400).send(ErrorHandler.handleError(err, null));
       } else if (!data)
         res.status(200).json([]);
-      else
+      else if (library === "music") {
+        data[0]['films'] = [];
+        data[0]['videogames'] = [];
         res.status(200).json(data);
+      } else if (library === "films") {
+        data[0]['music'] = [];
+        data[0]['videogames'] = [];
+        res.status(200).json(data);
+      } else {
+        data[0]['films'] = [];
+        data[0]['music'] = [];
+        res.status(200).json(data);
+      }
+
 
     });
 
