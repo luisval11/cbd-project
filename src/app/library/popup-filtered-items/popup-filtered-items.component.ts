@@ -15,11 +15,12 @@ export class PopupFilteredItemsComponent implements OnInit {
   mark: string;
   loading2: boolean;
   query = '';
-  results: Library = new Library('', [],  [], []);
+  results: Library = new Library('', [], [], []);
 
   constructor(private libraryService: LibraryService,
               public dialog: MatDialogRef<PopupFilteredItemsComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) { }
+              @Inject(MAT_DIALOG_DATA) public data: any) {
+  }
 
   ngOnInit() {
     this.loading2 = true;
@@ -28,6 +29,7 @@ export class PopupFilteredItemsComponent implements OnInit {
     this.mark = this.data.mark;
     this.filter();
   }
+
   filter() {
     this.loading2 = true;
     let query;
@@ -50,38 +52,40 @@ export class PopupFilteredItemsComponent implements OnInit {
     console.log(query);
     if (this.library !== 'All') {
       this.libraryService.filterByString(query, this.library).then(library => {
-        console.log(library);
-        // this.results = library;
-        console.log(this.results);
+        this.results = library;
         this.loading2 = false;
       });
     } else {
       this.busca3Librerias(query);
     }
-}
+  }
 
   busca3Librerias(query) {
     this.libraryService.filterByString(query, 'music').then(res => {
-      res.
-      this.results.music = res[0];
+      this.results.music = res.music;
+
+      this.libraryService.filterByString(query, 'films').then(results2 => {
+        this.results.films = results2.films;
+
+        this.libraryService.filterByString(query, 'videogames').then(results3 => {
+          this.results.videogames = results3.videogames;
+          this.loading2 = false;
+        }).catch(err => {
+          console.log(err);
+        });
+        // this.results.films = results2.films;
+      }).catch(err => {
+        console.log(err);
+      });
+
+
     }).catch(err => {
       console.log(err);
     });
-    this.libraryService.filterByString(query, 'films').then(results2 => {
-      console.log(this.results);
-      // this.results.films = results2.films;
-    }).catch(err => {
-      console.log(err);
-    });
-    this.libraryService.filterByString(query, 'videogames').then(results3 => {
-      console.log(this.results);
-      // this.results.videogames = results3.videogames;
-      this.loading2 = false;
-    }).catch(err => {
-      console.log(err);
-    });
-    console.log(this.results);
+
+    console.log('RESULTS:' + this.results);
   }
+
   close() {
     this.dialog.close();
   }

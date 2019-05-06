@@ -12,7 +12,8 @@ export class LibraryService {
   public onRefreshLibrary: EventEmitter<any> = new EventEmitter<any>();
   public onRefreshSearch: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getMyLibrary() {
     return this.http.get<Library>('/api/user/library').toPromise();
@@ -42,10 +43,7 @@ export class LibraryService {
   }
 
   filterByString(query: string, library: string) {
-    this.http.get('/api/library' + query + '&library=' + library).toPromise().then(response => {
-      let jsonObject = response.data;
-
-    });
+    return this.http.get<Library>('/api/library' + query + '&library=' + library).toPromise();
   }
 
 }
