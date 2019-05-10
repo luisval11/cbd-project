@@ -20,6 +20,7 @@ import { FilterItemComponent } from './library/filter-item/filter-item.component
 import { PopupFilteredItemsComponent } from './library/popup-filtered-items/popup-filtered-items.component';
 import {MatDialogModule, MatSnackBarModule} from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { CopyItemComponent } from './library/copy-item/copy-item.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     DeleteItemComponent,
     UserLibraryComponent,
     FilterItemComponent,
-    PopupFilteredItemsComponent
+    PopupFilteredItemsComponent,
+    CopyItemComponent
   ],
   imports: [
     BrowserModule,

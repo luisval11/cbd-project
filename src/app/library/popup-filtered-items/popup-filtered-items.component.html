@@ -1,17 +1,29 @@
 <h2 mat-dialog-title>Results:</h2>
-<div *ngFor="let m of results.music">
-  <h3 mat-dialog-content>{{m.title}}</h3>
-  <h3 mat-dialog-content>{{m.description}}</h3>
-  <h3 mat-dialog-content>{{m.author}}</h3>
-</div>
-<div *ngFor="let f of results.films">
-  <h3 mat-dialog-content>{{f.title}}</h3>
-  <h3 mat-dialog-content>{{f.description}}</h3>
-  <h3 mat-dialog-content>{{f.author}}</h3>
-</div>
-<div *ngFor="let v of results.videogames">
-  <h3 mat-dialog-content>{{v.title}}</h3>
-  <h3 mat-dialog-content>{{v.description}}</h3>
-  <h3 mat-dialog-content>{{v.author}}</h3>
-</div>
+<ng-container *ngIf="results.music.length == 0 && results.films.length == 0 && results.videogames.length == 0; else resultsItems">
+  <h3>There are no results for the established parameters. Try again.</h3>
+</ng-container>
+<ng-template #resultsItems>
+  <div *ngFor="let m of results.music">
+    <div *ngIf="results.music.length != 0">
+      <h2>Music:</h2>
+      <app-displayer-item [item]="m" [typeLib]="music"></app-displayer-item>
+      <div *ngIf="logged" (click)="close()"><app-copy-item [itemId]="m._id"></app-copy-item></div>
+    </div>
+  </div>
+  <div *ngFor="let f of results.films">
+    <div *ngIf="results.films.length != 0">
+    <h2>Films:</h2>
+      <app-displayer-item [item]="f" [typeLib]="films"></app-displayer-item>
+      <div *ngIf="logged" (click)="close()"><app-copy-item [itemId]="f._id"></app-copy-item></div>
+    </div>
+  </div>
+  <div *ngFor="let v of results.videogames">
+    <div *ngIf="results.videogames.length != 0">
+    <h2>Videogames:</h2>
+      <app-displayer-item [item]="v" [typeLib]="videogames"></app-displayer-item>
+      <div *ngIf="logged" (click)="close()"><app-copy-item [itemId]="v._id"></app-copy-item></div>
+    </div>
+  </div>
+</ng-template>
 <button class="mat-raised-button" (click)="close()">Close</button>
+

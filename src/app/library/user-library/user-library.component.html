@@ -3,12 +3,18 @@
 <h2>Video games:</h2><br>
 <div *ngFor="let vid of videogamesList" >
   <app-displayer-item [item] = "vid" [typeLib]="videogames"></app-displayer-item>
+  <a routerLink="/user/library/edit/{{vid._id}}">Edit this item</a>
+  <app-delete-item [itemId]="vid._id"></app-delete-item>
 </div>
 <h2>Music:</h2><br>
 <div *ngFor="let mus of musicList" >
   <app-displayer-item [item] = "mus" [typeLib]="music"></app-displayer-item>
+  <a routerLink="/user/library/edit/{{mus._id}}">Edit this item</a>
+  <app-delete-item [itemId]="mus._id"></app-delete-item>
 </div>
 <h2>Films:</h2><br>
 <div *ngFor="let fil of filmsList" >
   <app-displayer-item [item] = "fil" [typeLib]="films"></app-displayer-item>
+  <a routerLink="/user/library/edit/{{fil._id}}">Edit this item</a>
+  <app-delete-item [itemId]="fil._id"></app-delete-item>
 </div>

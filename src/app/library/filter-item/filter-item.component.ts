@@ -13,12 +13,10 @@ import {PopupFilteredItemsComponent} from '../popup-filtered-items/popup-filtere
 export class FilterItemComponent implements OnInit {
 
   libreria: Library = new Library('', [], [], []);
-
   musics: LibraryItem[] = [];
   filmss: LibraryItem[] = [];
   videogamess: LibraryItem[] = [];
   results: LibraryItem[] = [];
-  query: string = '';
   loading = true;
   loading2 = true;
   @Input() search: string;

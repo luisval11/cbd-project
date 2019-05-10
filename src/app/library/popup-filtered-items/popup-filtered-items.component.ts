@@ -1,8 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {LibraryService} from '../library.service';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 import {LibraryItem} from '../../models/libraryItem';
 import {Library} from '../../models/library';
+import {CookieService} from "ngx-cookie-service";
+import {LoginService} from "../../login/login.service";
 
 @Component({
   selector: 'app-popup-filtered-items',
@@ -13,13 +15,15 @@ export class PopupFilteredItemsComponent implements OnInit {
   library: string;
   search: string;
   mark: string;
+  logged: boolean;
   loading2: boolean;
   query = '';
   results: Library = new Library('', [], [], []);
 
   constructor(private libraryService: LibraryService,
               public dialog: MatDialogRef<PopupFilteredItemsComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) {
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              private loginService: LoginService, private cookieService: CookieService, ) {
   }
 
   ngOnInit() {
@@ -27,6 +31,11 @@ export class PopupFilteredItemsComponent implements OnInit {
     this.library = this.data.library;
     this.search = this.data.search;
     this.mark = this.data.mark;
+    if (this.cookieService.get('auth_token') !== '') {
+        this.logged = true;
+    } else {
+      this.logged = false;
+    }
     this.filter();
   }
 

@@ -1,9 +1,8 @@
 <fieldset>
-Title of item: {{item.title}} <br>
-Author: {{item.author}} <br>
-Description: {{item.description}} <br>
-Mark: {{item.mark}} <br>
+  <h3 mat-dialog-content>Title of item: {{item.title}}</h3><br>
+  <h3 mat-dialog-content>Author: {{item.author}} </h3><br>
+  <h3 mat-dialog-content>Description: {{item.description}} </h3><br>
+  <h3 mat-dialog-content>Mark: {{item.mark}} </h3><br>
 </fieldset>
 
-<a routerLink="/user/library/edit/{{item._id}}">Edit this item</a>
-<app-delete-item [itemId]="item._id"></app-delete-item>
+
