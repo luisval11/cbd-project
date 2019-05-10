@@ -23,9 +23,9 @@ router.put('/user/library/:library', LibraryController.put);
 //################ USER #################
 
 router.get('/user', UserController.get);
-router.post('/user/:user', UserController.post);
-router.put('/user/:userId', UserController.put);
-router.delete('/user/:userId', UserController.delete);
+router.post('/user', UserController.post);
+router.put('/user', UserController.put);
+router.delete('/user', UserController.delete);
 
 module.exports = router;
 
