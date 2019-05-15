@@ -20,7 +20,7 @@ export class FilterItemComponent implements OnInit {
   results: LibraryItem[] = [];
   loading = true;
   loading2 = true;
-  logged : boolean;
+  logged: boolean;
   @Input() search: string;
   @Input() library: string;
   @Input() mark: string;
@@ -46,7 +46,6 @@ export class FilterItemComponent implements OnInit {
       console.log(err);
     });
     this.results = [];
-    this.loading2 = false;
   }
 
   filterPopup() {
@@ -58,7 +57,7 @@ export class FilterItemComponent implements OnInit {
       library: this.library,
       mark: this.mark
     };
-    console.log(dialogConfig.data);
+    this.loading2 = false;
     this.dialog.open(PopupFilteredItemsComponent, dialogConfig);
   }
 }

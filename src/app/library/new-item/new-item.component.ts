@@ -56,4 +56,7 @@ export class NewItemComponent implements OnInit {
     this.marksTypes.push(MarkType.horrible);
     this.marksTypes.push(MarkType.masterpiece);
   }
+  cancel() {
+    this.router.navigate(['/user/library']);
+  }
 }

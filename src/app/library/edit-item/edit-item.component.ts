@@ -56,4 +56,7 @@ export class EditItemComponent implements OnInit {
       this.item.mark = MarkType.masterpiece;
     }
   }
+  cancel() {
+    this.router.navigate(['/user/library']);
+  }
 }

@@ -33,6 +33,7 @@
   </div>
 </form>
 </fieldset>
+<ng-container *ngIf="loading2; else empty">
 <h2>ALL ITEMS:</h2>
 <h3>VIDEOGAMES: </h3>
 <ng-container *ngIf="loading; else filterItems1">
@@ -100,4 +101,7 @@
     There isn't items with this parameters in any film library.
   </div>
 </ng-template>
+</ng-container>
+<ng-template #empty>
 
+</ng-template>
