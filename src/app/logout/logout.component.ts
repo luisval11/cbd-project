@@ -14,7 +14,6 @@ export class LogoutComponent implements OnInit {
   constructor(private snackBar: MatSnackBar, private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
-    this.log_out();
   }
 
   log_out() {

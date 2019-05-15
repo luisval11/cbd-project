@@ -4,6 +4,7 @@ import {LibraryItem} from '../../models/libraryItem';
 import {Library} from '../../models/library';
 import {MatDialog, MatDialogConfig} from '@angular/material';
 import {PopupFilteredItemsComponent} from '../popup-filtered-items/popup-filtered-items.component';
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-filter-item',
@@ -19,14 +20,20 @@ export class FilterItemComponent implements OnInit {
   results: LibraryItem[] = [];
   loading = true;
   loading2 = true;
+  logged : boolean;
   @Input() search: string;
   @Input() library: string;
   @Input() mark: string;
 
 
-  constructor(private libraryService: LibraryService, private dialog: MatDialog) { }
+  constructor(private libraryService: LibraryService, private dialog: MatDialog, private cookieService: CookieService) { }
 
   ngOnInit() {
+    if (this.cookieService.get('auth_token') !== '') {
+      this.logged = true;
+    } else {
+      this.logged = false;
+    }
     this.loading = true;
     this.libraryService.findLibraries().then(lib => {
       console.log(lib[0]);

@@ -1,4 +1,9 @@
-&nbsp;<a routerLink="/login">Back to Login</a>
+<ng-container *ngIf="logged; else notLogged">
+  &nbsp;<a routerLink="/login">My library</a>
+</ng-container>
+<ng-template #notLogged>
+  &nbsp;<a routerLink="/login">Back to Login</a>
+</ng-template>
 <fieldset>
 <form>
   <div class="form-group active">

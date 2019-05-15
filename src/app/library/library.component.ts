@@ -13,7 +13,6 @@ export class LibraryComponent implements OnInit {
   constructor(private libraryService: LibraryService) { }
 
   ngOnInit() {
-    //this.library = this.libraryService.getMyLibrary().then()
   }
 
 }

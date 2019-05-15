@@ -20,48 +20,47 @@ try {
     password: "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
     dni: "52932758Y",
 
-    music: [{_id: ObjectId(), author: "pepe", title: "hola don pepito"}, {
+    music: [{_id: ObjectId(), author: "Pixie Lott", title: "Cry me out", mark: "masterpiece"}, {
       _id: ObjectId(),
-      author: "paco",
-      title: "el partio de mi casa",
-      description: "cancionaca",
+      author: "The Fray",
+      title: "How to save a life",
+      description: "Song from 2009",
+      mark: "good"
+    }],
+    films: [{_id: ObjectId(), author: "Jean-Pierre Jeunet", title: "Le fabuleux destin d'Amélie Poulain"}, {
+      _id: ObjectId(),
+      author: "David Fincher",
+      title: "Fight Club",
+      mark: "great"
+    }],
+    videogames: [{_id: ObjectId(), author: "Square Enix", title: "Kingdom Hearts 3", mark: "horrible"}, {
+      _id: ObjectId(),
+      author: "Nintendo",
+      title: "The Legend of Zelda: Breath of the Wild",
+      description: "Last game of Zelda's series in Nintendo Switch",
       mark: "masterpiece"
-    }],
-    films: [{_id: ObjectId(), author: "willy wonka", title: "charlie y la fabrica de chocolate"}, {
-      _id: ObjectId(),
-      author: "mogly",
-      title: "el libro de la selva",
-      description: "xddd",
-      mark: "good"
-    }],
-    videogames: [{_id: ObjectId(), author: "sora", title: "kh1"}, {
-      _id: ObjectId(),
-      author: "riku",
-      title: "kh2",
-      description: "el ultimo juego enumerado de kh",
-      mark: "good"
     }]
   }, {
     _id: ObjectId(),
-    firstName: "Admin",
-    lastName: "Admin",
+    firstName: "Admin1",
+    lastName: "Admin1",
     username: "admin1",
-    password: "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
+    password: "25f43b1486ad95a1398e3eeb3d83bc4010015fcc9bedb35b432e00298d5021f7",
     dni: "52932758Y",
 
-    music: [{_id: ObjectId(), author: "jose", title: "hola don jose"}, {
+    music: [{_id: ObjectId(), author: "Owl City", title: "Fireflies"}, {
       _id: ObjectId(),
-      author: "paco",
-      title: "5 lobitos tiene la loba",
-      description: "cancionaca",
-      mark: "masterpiece"
+      author: "The Script ft. will.i.am",
+      title: "Hall of Fame",
+      description: "Song's from 2012",
+      mark: "great"
     }],
-    films: [{_id: ObjectId(), author: "torrente", title: "niños grandes"}, {
+    films: [{_id: ObjectId(), author: "Francis Ford Coppola", title: "El padrino"}, {
       _id: ObjectId(),
-      author: "mogly",
-      title: "el libro de la selva",
-      description: "xddd",
-      mark: "good"
+      author: "Steven Spielberg",
+      title: "La lista de Schindler",
+      description: "Film from 1993",
+      mark: "pending"
     }],
     videogames: []
   }]);
