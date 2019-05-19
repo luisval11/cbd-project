@@ -18,16 +18,18 @@ export class EditItemComponent implements OnInit {
   oldLib: string;
 
   constructor(private libraryService: LibraryService, private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
+    this.error = null;
     const idItem = this.route.paramMap.subscribe(params => {
       this.itemId = params.get('itemId');
       this.libraryService.findItem(this.itemId).then(item => {
         this.item = item;
         this.oldLib = item.type;
       }).catch(err => {
-        this.error = err;
+        this.error = 'Cannot commit this operation';
       });
     });
   }
@@ -38,9 +40,10 @@ export class EditItemComponent implements OnInit {
       this.error = null;
       this.router.navigate(['/user/library']);
     }).catch(err => {
-      this.error = err;
+      this.error = 'Cannot commit this operation';
     });
   }
+
   checkType() {
     if (this.mark === MarkType.pending) {
       this.item.mark = MarkType.pending;
@@ -56,6 +59,7 @@ export class EditItemComponent implements OnInit {
       this.item.mark = MarkType.masterpiece;
     }
   }
+
   cancel() {
     this.router.navigate(['/user/library']);
   }

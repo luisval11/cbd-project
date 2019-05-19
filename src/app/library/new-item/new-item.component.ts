@@ -16,20 +16,22 @@ export class NewItemComponent implements OnInit {
   @Input() library: string;
   marksTypes: string[] = [];
   error = null;
-  constructor(private libraryService: LibraryService,  private router: Router) { }
+
+  constructor(private libraryService: LibraryService, private router: Router) {
+  }
 
   ngOnInit() {
+    this.error = null;
     this.addMarkTypes();
   }
 
   create() {
     this.checkType();
     this.libraryService.addItem(this.newItem, this.library).then(item => {
-     this.error = null;
-     this.router.navigate(['/user/library']);
+      this.error = null;
+      this.router.navigate(['/user/library']);
     }).catch(err => {
-     this.error = err;
-     console.log(err);
+      this.error = 'Cannot commit this operation';
     });
   }
 
@@ -48,6 +50,7 @@ export class NewItemComponent implements OnInit {
       this.newItem.mark = MarkType.masterpiece;
     }
   }
+
   addMarkTypes() {
     this.marksTypes.push(MarkType.pending);
     this.marksTypes.push(MarkType.bad);
@@ -56,6 +59,7 @@ export class NewItemComponent implements OnInit {
     this.marksTypes.push(MarkType.horrible);
     this.marksTypes.push(MarkType.masterpiece);
   }
+
   cancel() {
     this.router.navigate(['/user/library']);
   }
